@@ -1,6 +1,10 @@
+import handleDom from "./dom";
+
 const api = (() => {
   // const searchBar = document.querySelector(".search-bar");
-  const location = prompt("City: ");
+  const searchBtn = document.querySelector(".search");
+  let location = "london";
+
   const apiKey = "f6e410436a0749ddb08115726242602";
 
   async function getWeatherData() {
@@ -10,7 +14,7 @@ const api = (() => {
         { mode: "cors" }
       );
       const data = await response.json();
-      // console.log(data);
+      console.log(data);
       return data;
     } catch (error) {
       console.log("error: ", error);
@@ -39,6 +43,13 @@ const api = (() => {
       console.log("An error occured: ", error);
     }
   }
+  // change location when searching
+  searchBtn.addEventListener("click", async () => {
+    location = document.querySelector(".search-bar").value;
+    console.log(location);
+    handleWeatherData();
+    handleDom.displayWeatherInformation();
+  });
 
   return { getWeatherData, handleWeatherData, processWeatherData };
 })();
