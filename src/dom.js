@@ -1,8 +1,6 @@
 import api from "./api";
 
 const handleDom = (() => {
-  const searchBar = document.querySelector(".search-bar");
-  const searchBtn = document.querySelector(".search");
   const celsius = "\u00B0";
   const weatherCondition = document.querySelector(".weather-condition");
   const weatherLocation = document.querySelector(".weather-location");
@@ -10,6 +8,9 @@ const handleDom = (() => {
     ".weather-location-localtime"
   );
   const weatherTemperature = document.querySelector(".weather-temperature");
+  const weatherFeelslike = document.querySelector(".feelslike");
+  const weatherHumidity = document.querySelector(".humidity");
+  const weatherWind = document.querySelector(".wind");
 
   async function displayWeatherInformation() {
     try {
@@ -20,16 +21,16 @@ const handleDom = (() => {
       weatherTemperature.textContent = `${
         processedData.temperature + celsius
       }C`;
+      weatherFeelslike.textContent = processedData.temeratureFeelsLike;
+      weatherHumidity.textContent = processedData.humidity;
+      weatherWind.textContent = processedData.wind;
     } catch (error) {
       console.log("An error has occured: ", error);
     }
   }
-  searchBtn.addEventListener("click", () => {
-    const location = searchBar.value;
-    console.log(location);
-  });
+
   displayWeatherInformation();
-  return {};
+  return { displayWeatherInformation };
 })();
 
 export default handleDom;
