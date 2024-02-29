@@ -21,9 +21,11 @@ const handleDom = (() => {
       weatherTemperature.textContent = `${
         processedData.temperature + celsius
       }C`;
-      weatherFeelslike.textContent = processedData.temeratureFeelsLike;
-      weatherHumidity.textContent = processedData.humidity;
-      weatherWind.textContent = processedData.wind;
+      weatherFeelslike.textContent = `${
+        processedData.temeratureFeelsLike + celsius
+      } C`;
+      weatherHumidity.textContent = `${processedData.humidity} %`;
+      weatherWind.textContent = `${processedData.wind} km/h`;
     } catch (error) {
       console.log("An error has occured: ", error);
     }
